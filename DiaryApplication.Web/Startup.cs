@@ -34,7 +34,7 @@ namespace DiaryApplication.Web
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<DiaryApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<DiaryApplicationUser>(options => options.SignIn.RequireConfirmedEmail = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddScoped<IDiaryService, DiaryService>();

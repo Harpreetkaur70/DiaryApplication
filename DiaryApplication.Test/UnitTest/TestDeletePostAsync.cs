@@ -31,18 +31,19 @@ namespace DiaryApplication.Test.UnitTest
             //Arrange
             var expected = true;
             //Act
-            var result = await _diaryService.DeletePostAsync(new DiaryPostEntity { Id = 1, Title = "MyDiaryApp", Content = "sfgh", ImageUrl = "", CreatedDate = DateTime.Now, UserId = "" });
+            var result = await _diaryService.DeletePostAsync(new DiaryPostEntity { Id=1,Title = "null", Content = "sfgh", ImageUrl = "", CreatedDate = DateTime.Now, UserId = "" });
             //Assert
             Assert.AreEqual(expected, result);
         }
         #endregion
         #region negative Test cases
-        public async Task TestNegitiveDeletePOstAsync()
+        [TestMethod]
+        public async Task TestNegitiveDeletePostAsync()
         {
             //Arrangei
             var expected = false;
             //Act
-            var result = await _diaryService.DeletePostAsync(new DiaryPostEntity { Id = 1, Title = "MyDiaryApp", Content = "dghj", ImageUrl = "", CreatedDate = DateTime.Now, UserId = "" });
+            var result = await _diaryService.DeletePostAsync(new DiaryPostEntity {  Id=1,Title = "null", Content = "defg", ImageUrl = "", CreatedDate = DateTime.Now, UserId = "" });
             //Assert
             Assert.AreEqual(expected, result);
         }

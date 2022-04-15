@@ -23,7 +23,7 @@ namespace DiaryApplication.Models
         [Required]
         public DateTime CreatedDate { get; set; }
 
-        [Required]
+        
         public string UserId { get; set; }
 
         [ForeignKey("UserId")]

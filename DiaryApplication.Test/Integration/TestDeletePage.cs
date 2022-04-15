@@ -38,19 +38,19 @@ namespace DiaryApplication.Test.Integration
         }
         #endregion
         #region Negative Test Cases
-        //public async Task TestNegitiveDeletePostAsync(string url)
-        //{
-        //    // Arrange
-        //    var client = _factory.CreateClient();
+        public async Task TestNegitiveDeletePostAsync(string url)
+        {
+            // Arrange
+            var client = _factory.CreateClient();
 
-        //    // Act
-        //    var response = await client.PostAsync(url);
+            // Act
+            var response = await client.GetAsync(url);
 
-        //    // Assert
-        //    response.EnsureSuccessStatusCode(); // Status Code 404
-        //    Assert.Equals(404, response.StatusCode);
-        //    //response.Content.Headers.ContentType.ToString());
-        //}
+            // Assert
+            response.EnsureSuccessStatusCode(); // Status Code 404
+            Assert.Equals(404, response.StatusCode);
+            //response.Content.Headers.ContentType.ToString());
+        }
         #endregion
     }
 }

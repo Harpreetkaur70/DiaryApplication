@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DiaryApplication.Models\**" />
+    <EmbeddedResource Remove="DiaryApplication.Models\**" />
+    <None Remove="DiaryApplication.Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.16" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />

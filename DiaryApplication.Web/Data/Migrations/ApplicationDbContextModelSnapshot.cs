@@ -122,6 +122,90 @@ namespace DiaryApplication.Web.Data.Migrations
                     b.ToTable("DiaryPosts");
                 });
 
+            modelBuilder.Entity("DiaryApplication.Models.UserEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("RecordVersion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("DiaryApplication.Models.UserTokenEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ExpiryDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("RecordVersion")
+                        .IsConcurrencyToken()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserTokens");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -268,6 +352,17 @@ namespace DiaryApplication.Web.Data.Migrations
                     b.Navigation("DiaryApplicationUser");
                 });
 
+            modelBuilder.Entity("DiaryApplication.Models.UserTokenEntity", b =>
+                {
+                    b.HasOne("DiaryApplication.Models.UserEntity", "User")
+                        .WithMany("ApiTokens")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -317,6 +412,11 @@ namespace DiaryApplication.Web.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DiaryApplication.Models.UserEntity", b =>
+                {
+                    b.Navigation("ApiTokens");
                 });
 #pragma warning restore 612, 618
         }

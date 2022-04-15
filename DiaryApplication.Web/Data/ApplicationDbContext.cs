@@ -15,5 +15,7 @@ namespace DiaryApplication.Web.Data
         }
 
         public DbSet<DiaryPostEntity> DiaryPosts { get; set; }
+        public DbSet<UserEntity> ApiUsers { get; set; }
+        public DbSet<UserTokenEntity> ApiUserTokens { get; set; }
     }
 }
